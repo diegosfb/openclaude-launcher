@@ -1,0 +1,10 @@
+npm install
+
+npm run compile
+vsce package
+
+cd /Users/diego.brihuega/openclaude-launcher
+code --install-extension openclaude-launcher-1.0.1.vsix --force
+
+Uninstall
+code --uninstall-extension local.openclaude-launcher

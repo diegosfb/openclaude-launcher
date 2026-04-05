@@ -1,0 +1,144 @@
+{
+  "name": "openclaude-launcher",
+  "displayName": "OpenClaude",
+  "description": "Launch OpenClaude from the VS Code sidebar.",
+  "version": "0.6.3",
+  "publisher": "local",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://example.com/local/openclaude-launcher"
+  },
+  "engines": {
+    "vscode": "^1.98.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "openclaude.openTerminal",
+        "title": "🤖 Launch OpenClaude"
+      },
+      {
+        "command": "antigravity.refresh",
+        "title": "Antigravity: Refresh"
+      },
+      {
+        "command": "antigravity.openAgent",
+        "title": "Antigravity: Open Agent"
+      },
+      {
+        "command": "antigravity.runWorkflow",
+        "title": "Antigravity: Run Workflow"
+      }
+    ],
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "openclaudeContainer",
+          "title": "OpenClaude",
+          "icon": "media/claudecode.png"
+        },
+        {
+          "id": "antigravityContainer",
+          "title": "Antigravity",
+          "icon": "media/claudecode.png"
+        }
+      ]
+    },
+    "views": {
+      "openclaudeContainer": [
+        {
+          "id": "openclaudeView",
+          "name": "OpenClaude",
+          "icon": "media/claudecode.png"
+        }
+      ],
+      "antigravityContainer": [
+        {
+          "id": "antigravityView",
+          "name": "Antigravity",
+          "icon": "media/claudecode.png"
+        }
+      ]
+    },
+    "menus": {
+      "view/title": [
+        {
+          "command": "openclaude.openTerminal",
+          "when": "view == openclaudeView",
+          "group": "navigation"
+        },
+        {
+          "command": "antigravity.refresh",
+          "when": "view == antigravityView",
+          "group": "navigation"
+        }
+      ]
+    },
+    "configuration": {
+      "title": "OpenClaude",
+      "properties": {
+        "openclaude.executablePath": {
+          "type": "string",
+          "default": "/opt/homebrew/bin/openclaude",
+          "description": "The path to the OpenClaude executable. Use 'openclaude' if it's already in your PATH."
+        },
+        "openclaude.autoLaunch": {
+          "type": "boolean",
+          "default": true,
+          "description": "Whether to automatically open the OpenClaude terminal on startup (with a 2.5s delay)."
+        },
+        "openclaude.terminalName": {
+          "type": "string",
+          "default": "OpenClaude",
+          "description": "The name shown in the VS Code terminal tab."
+        },
+        "openclaude.customShell": {
+          "type": "string",
+          "default": "",
+          "description": "Optional: Override the default shell (e.g., /bin/zsh or powershell.exe). Leave empty for system default."
+        },
+        "openclaude.shellArgs": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "default": [
+            "-ilc"
+          ],
+          "description": "Arguments to pass to the shell when launching OpenClaude."
+        },
+        "antigravity.rootPath": {
+          "type": "string",
+          "default": "/Users/diego.brihuega/Documents/Projects/openclaude-launcher/.agent/antigravity",
+          "description": "Path to the antigravity directory that contains agents/ and workflows/."
+        },
+        "antigravity.terminalName": {
+          "type": "string",
+          "default": "Antigravity Workflow",
+          "description": "Terminal name used when running workflow scripts."
+        }
+      }
+    }
+  },
+  "files": [
+    "out/**",
+    "media/**",
+    "package.json"
+  ],
+  "scripts": {
+    "compile": "node node_modules/typescript/lib/tsc.js -p ./"
+  },
+  "devDependencies": {
+    "@types/node": "^20.19.0",
+    "@types/vscode": "^1.98.0",
+    "typescript": "^5.8.3"
+  }
+}
