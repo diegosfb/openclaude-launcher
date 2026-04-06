@@ -2,7 +2,7 @@
   "name": "openclaude-launcher",
   "displayName": "OpenClaude",
   "description": "Launch OpenClaude from the VS Code sidebar.",
-  "version": "0.6.3",
+  "version": "0.6.4",
   "publisher": "local",
   "license": "MIT",
   "repository": {
@@ -92,7 +92,7 @@
         },
         "openclaude.autoLaunch": {
           "type": "boolean",
-          "default": true,
+          "default": false,
           "description": "Whether to automatically open the OpenClaude terminal on startup (with a 2.5s delay)."
         },
         "openclaude.terminalName": {
